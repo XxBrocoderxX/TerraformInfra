@@ -23,6 +23,8 @@ Note:
 1. The Terraform user is used to create backups of every vm within the automated infrastructure made
 2. The root user is necessary for Terraform to login to Proxmox (you can do your own research for why the root user is necessary :p not trying to be mean just saves lines on the README)
 
+On your CLI, type:
+
 ```
 export TF_VAR_PM_USER=ProxmoxTerraformUser
 export TF_VAR_PM_PASS=ProxmoxTerraformPassword
@@ -31,9 +33,25 @@ export TF_VAR_PM_PASS2=ProxMoxRootPassword
 
 ```
 
+### Prioritizing Workspace1.tfvars
+
+When trying to create a new NCAE topology, create a copy of the Workspace1.tfvars file on your CLI:
+
+```
+cp Workspace1.tfvars Team1.tfvars
+```
+### Create Terraform workspace
+
+For best practice, create a new workspace for each new infrastructure you want to make using terraform:
+
+```
+terraform workspace create Team1
+terraform workspace select Team1
+```
+
 ### Variables 
 
-Inside the Workspace1.tfvars file, you need to fill in the team number (change the $ sign)
+Inside the file you just made, you need to fill in the team number (change the $ sign)
 
 ```
 IntIPSCHEME = "192.168.$.0/24"
@@ -56,4 +74,4 @@ hackathon_ip = "172.18.$.2/24"
 dst_address = "192.168.$.0/24"
 InternalRouterExt_ip = "172.18.$.1"
 ```
-
+### Editing 
