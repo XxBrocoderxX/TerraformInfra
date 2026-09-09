@@ -74,4 +74,18 @@ hackathon_ip = "172.18.$.2/24"
 dst_address = "192.168.$.0/24"
 InternalRouterExt_ip = "172.18.$.1"
 ```
-### Editing 
+### Editing main.tf
+
+There are a couple of hardcoded variables that you need to change:
+
+1. within the ``` provider "proxmox" ``` resource, change the ``` endpoint ``` option to your server's proxmox API key or IP address
+3. within the ```resource "proxmox_virtual_environment_acl" "operations_automation_monitoring"``` resource, change the ```role_id``` option to the role you created for the NCAE team user you made from prerequisites
+4. within the resources listed below, specify the vm id of each service within the NCAE topology you already have in the prerequisites section inside the ```clone``` option:
+   ```
+   resource "proxmox_virtual_environment_vm" "DNS"
+   resource "proxmox_virtual_environment_vm" "InternalRouter"
+   resource "proxmox_virtual_environment_vm" "Web"
+   resource "proxmox_virtual_environment_vm" "Database"
+   resource "proxmox_virtual_environment_vm" "FTPSSH"
+   resource "proxmox_virtual_environment_vm" "DNS"
+   ```
