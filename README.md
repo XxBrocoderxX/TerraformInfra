@@ -49,7 +49,6 @@ For best practice, create a new workspace for each new team you want to make usi
 ```
 terraform workspace create Team1
 terraform workspace select Team1
-terraform apply -var-file=Team$.tfvars
 ```
 
 ### Variables 
@@ -77,6 +76,9 @@ hackathon_ip = "172.18.$.2/24"
 dst_address = "192.168.$.0/24"
 InternalRouterExt_ip = "172.18.$.1"
 ```
+### Run 
+
+``` terraform apply -var-file=Team$.tfvars ```
 
 ## When migrating to another server or changing VPNs
 
