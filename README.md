@@ -80,6 +80,10 @@ InternalRouterExt_ip = "172.18.$.1"
 
 ``` terraform apply -var-file=Team$.tfvars ```
 
+### Disclaimer
+
+Remember to change passwords for each NCAE team user you created on the Proxmox GUI, as they all share the same password via the instructions of the ```resource "proxmox_virtual_environment_user" "user_automation"``` resource inside of ```main.tf```
+
 ## When migrating to another server or changing VPNs
 
 ### Editing main.tf
@@ -98,6 +102,7 @@ There are a couple of hardcoded variables that you need to change:
    resource "proxmox_virtual_environment_vm" "DNS"
    ```
 5. Within the ``` resource "null_resource" "hackathon" ```, change the ```provisioner "local-exec"``` option to the private IP of the hackathon router you have in the prerequisites:
+
    ```
    provisioner "local-exec" {
     command = <<EOT
@@ -113,6 +118,7 @@ There are a couple of hardcoded variables that you need to change:
       sshpass -p 'root' ssh -o StrictHostKeyChecking=no admin@YOURHACKATHONIP "ip route remove [find dst-address=\"${self.triggers.dst_address}\" gateway=\"${self.triggers.InternalRouterExt_ip}\"]"
     EOT
    }
-
    }
+   ```
+
 
