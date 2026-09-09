@@ -94,7 +94,7 @@ There are a couple of hardcoded variables that you need to change:
    ```
    provisioner "local-exec" {
     command = <<EOT
-      sshpass -p 'root' ssh -o StrictHostKeyChecking=no admin@YOURHACKATHONIP"ip address add address=${self.triggers.hackathon_ip} interface=${self.triggers.hackathon_interface}"
+      sshpass -p 'root' ssh -o StrictHostKeyChecking=no admin@YOURHACKATHONIP "ip address add address=${self.triggers.hackathon_ip} interface=${self.triggers.hackathon_interface}"
       sshpass -p 'root' ssh -o StrictHostKeyChecking=no admin@YOURHACKATHONIP "ip route add dst-address=${self.triggers.dst_address} gateway=${self.triggers.InternalRouterExt_ip}"
     EOT
    }
@@ -103,7 +103,7 @@ There are a couple of hardcoded variables that you need to change:
     when = destroy
     command = <<EOT
       sshpass -p 'root' ssh -o StrictHostKeyChecking=no admin@YOURHACKATHONIP "ip address remove [find address=\"${self.triggers.hackathon_ip}\" interface=\"${self.triggers.hackathon_interface}\"]"
-      sshpass -p 'root' ssh -o StrictHostKeyChecking=no admin@YOURHACKATHONIP"ip route remove [find dst-address=\"${self.triggers.dst_address}\" gateway=\"${self.triggers.InternalRouterExt_ip}\"]"
+      sshpass -p 'root' ssh -o StrictHostKeyChecking=no admin@YOURHACKATHONIP "ip route remove [find dst-address=\"${self.triggers.dst_address}\" gateway=\"${self.triggers.InternalRouterExt_ip}\"]"
     EOT
    }
 
