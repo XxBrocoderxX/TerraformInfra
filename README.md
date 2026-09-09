@@ -76,6 +76,9 @@ hackathon_ip = "172.18.$.2/24"
 dst_address = "192.168.$.0/24"
 InternalRouterExt_ip = "172.18.$.1"
 ```
+
+## When migrating to another server or changing VPNs
+
 ### Editing main.tf
 
 There are a couple of hardcoded variables that you need to change:
