@@ -109,4 +109,3 @@ There are a couple of hardcoded variables that you need to change:
 
    }
 
-```
