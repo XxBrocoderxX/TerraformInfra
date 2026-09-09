@@ -101,7 +101,7 @@ There are a couple of hardcoded variables that you need to change:
    resource "proxmox_virtual_environment_vm" "FTPSSH"
    resource "proxmox_virtual_environment_vm" "DNS"
    ```
-5. Within the ``` resource "null_resource" "hackathon" ```, change the ```provisioner "local-exec"``` option to the private IP of the hackathon router you have in the prerequisites:
+5. Within the ``` resource "null_resource" "hackathon" ```, change the ```provisioner "local-exec"``` option to the private IP of the hackathon router you have in the prerequisites. Specifically, the ```admin@YOURHACKATHONIP``` section like below:
 
    ```
    provisioner "local-exec" {
