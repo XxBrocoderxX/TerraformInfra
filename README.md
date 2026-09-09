@@ -11,9 +11,10 @@ Install Terraform:
 
 On your Proxmox:
 
-Create Terraform user and role with necessary permissions (will get updated soon)
-Create a role for NCAE users to log into their dedicated infrastructure with necessary permissions (will get updated soon)
-Have the NCAE infrastructure ready (will get updated soon)
+1. Create Terraform user and role with necessary permissions (will get updated soon)
+2. Create a role for NCAE users to log into their dedicated infrastructure with necessary permissions (will get updated soon)
+3. Have the NCAE infrastructure ready (will get updated soon)
+4. Have the scoring engine and the hackathon router. The purpose of the hackathon router is to route all traffic to the internet from each individual NCAE topology's router instead of having a NAT bridge to the internet which defeats the purpose of configuring the router service (will get updated soon)
 
 ## How it works
 
@@ -89,3 +90,23 @@ There are a couple of hardcoded variables that you need to change:
    resource "proxmox_virtual_environment_vm" "FTPSSH"
    resource "proxmox_virtual_environment_vm" "DNS"
    ```
+5. Within the ``` resource "null_resource" "hackathon" ```, change the ```provisioner "local-exec"``` option to the private IP of the hackathon router you have in the prerequisites:
+   ```
+   provisioner "local-exec" {
+    command = <<EOT
+      sshpass -p 'root' ssh -o StrictHostKeyChecking=no admin@YOURHACKATHONIP"ip address add address=${self.triggers.hackathon_ip} interface=${self.triggers.hackathon_interface}"
+      sshpass -p 'root' ssh -o StrictHostKeyChecking=no admin@YOURHACKATHONIP "ip route add dst-address=${self.triggers.dst_address} gateway=${self.triggers.InternalRouterExt_ip}"
+    EOT
+   }
+
+   provisioner "local-exec" {
+    when = destroy
+    command = <<EOT
+      sshpass -p 'root' ssh -o StrictHostKeyChecking=no admin@YOURHACKATHONIP "ip address remove [find address=\"${self.triggers.hackathon_ip}\" interface=\"${self.triggers.hackathon_interface}\"]"
+      sshpass -p 'root' ssh -o StrictHostKeyChecking=no admin@YOURHACKATHONIP"ip route remove [find dst-address=\"${self.triggers.dst_address}\" gateway=\"${self.triggers.InternalRouterExt_ip}\"]"
+    EOT
+   }
+
+   }
+
+```
