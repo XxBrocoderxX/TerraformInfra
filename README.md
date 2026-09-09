@@ -14,7 +14,8 @@ On your Proxmox:
 1. Create Terraform user and role with necessary permissions (will get updated soon)
 2. Create a role for NCAE users to log into their dedicated infrastructure with necessary permissions (will get updated soon)
 3. Have the NCAE infrastructure ready (will get updated soon)
-4. Have the scoring engine and the hackathon router. The purpose of the hackathon router is to route all traffic to the internet from each individual NCAE topology's router instead of having a NAT bridge to the internet which defeats the purpose of configuring the router service (will get updated soon)
+4. Have the scoring engine and the hackathon router.
+   - The purpose of the hackathon router is to route all traffic to the internet from each individual NCAE topology's router instead of having a NAT bridge to the internet which defeats the purpose of configuring the router service (will get updated soon)
 
 ## How it works
 
