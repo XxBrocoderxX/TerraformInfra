@@ -44,11 +44,12 @@ cp Workspace1.tfvars Team1.tfvars
 ```
 ### Create Terraform workspace
 
-For best practice, create a new workspace for each new infrastructure you want to make using terraform:
+For best practice, create a new workspace for each new team you want to make using terraform:
 
 ```
 terraform workspace create Team1
 terraform workspace select Team1
+terraform apply -var-file=Team$.tfvars
 ```
 
 ### Variables 
