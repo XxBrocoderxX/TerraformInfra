@@ -19,7 +19,7 @@ On your Proxmox:
 
 ## How it works
 
-### Create environment variables for the root user and the Terraform user (you made in the prerequisite)
+### Create environment variables
 
 Note: 
 1. The Terraform user is used to create backups of every vm within the automated infrastructure made
