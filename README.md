@@ -37,7 +37,7 @@ export TF_VAR_PM_PASS2=ProxMoxRootPassword
 
 ### Prioritizing Workspace1.tfvars
 
-When trying to create a new NCAE topology, create a copy of the Workspace1.tfvars file on your CLI:
+When trying to create a new NCAE team, create a copy of the Workspace1.tfvars file on your CLI:
 
 ```
 cp Workspace1.tfvars Team1.tfvars
